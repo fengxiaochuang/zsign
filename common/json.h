@@ -196,7 +196,7 @@ public:
 	string writePList() const;
 	const char *writePList(string &strDoc) const;
 
-	bool readPList(const string &strdoc, string *pstrerr = NULL);
+	bool readPList(string &strdoc, string *pstrerr = NULL);
 	bool readPList(const char *pdoc, size_t len = 0, string *pstrerr = NULL);
 
 	bool readFile(const char *file, string *pstrerr = NULL);

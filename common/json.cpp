@@ -15,6 +15,7 @@
 
 const JValue JValue::null;
 const string JValue::nullData;
+const char      *utf8bom = "\xef\xbb\xbf";
 
 JValue::JValue(TYPE type) : m_eType(type)
 {
@@ -932,8 +933,11 @@ bool JValue::isDateString() const
 	return false;
 }
 
-bool JValue::readPList(const string &strdoc, string *pstrerr /*= NULL*/)
+bool JValue::readPList(string &strdoc, string *pstrerr /*= NULL*/)
 {
+	if (!strdoc.substr(0, 3).compare(utf8bom)){
+		strdoc = strdoc.substr(3);
+	}
 	return readPList(strdoc.data(), strdoc.size(), pstrerr);
 }
 
